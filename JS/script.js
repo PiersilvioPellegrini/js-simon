@@ -1,7 +1,9 @@
 //creo le varibaili globali
 const OutRandomNumber = document.getElementById("randomNumber");
 const outNumber = document.getElementById("outNumber");
+// array numeri random
 const numeriRandom = [];
+// array numeriUtente
 const numeriUtente = [];
 
 //creo la funzione per generare i numeri random
@@ -15,13 +17,14 @@ for (let i = 0; i < 5; i++) {
 }
 
 //stampo i numeri random
-OutRandomNumber.innerHTML = "numeri random sono:" + numeriRandom;
+OutRandomNumber.innerHTML =
+  "RICORDA I SEGUENTI NUMERI:" + "<br>" + numeriRandom;
 
 // dopo aver creato e riempiro l'array lo faccio sparire dopo 30 secondi
 const time = setTimeout(function () {
-  OutRandomNumber.innerHTML =
-    "tempo scaduto, prova ad indovinare i numeri visualizzati precedentemente";
-}, 3000);
+  OutRandomNumber.innerHTML = "";
+  // aspetta 30 secondi e poi fa sparire l'array
+}, 30000);
 
 const time2 = setTimeout(function () {
   // richiedo all'utente di inseirere i numeri e li inserisco nell'array
@@ -35,20 +38,23 @@ const time2 = setTimeout(function () {
   // stampo i numeri indovinati
   const numeriIndovinati = confrontaNumeri(numeriRandom, numeriUtente);
   if (numeriIndovinati.length > 0) {
-    outNumber.innerHTML = "numeri indovinati:" + numeriIndovinati + "<br>";
+    outNumber.innerHTML =
+      " i numeri indovinati sono i seguenti:" + numeriIndovinati + "<br>";
     console.log(numeriIndovinati);
   } else {
-    OutRandomNumber.innerHTML = "i numeri inseriti sono" + numeriUtente + "<br>";
+    OutRandomNumber.innerHTML =
+      "i numeri inseriti sono" + "<br>" + numeriUtente + "<br>";
     outNumber.innerHTML = "non hai indovinato nessun numero";
     console.log("non hai indovinato nessun numero");
   }
-}, 6000);
+  //   aspetta 60 secondi
+}, 31000);
 
 // creo la funzione per confrontare i numeri inseriti dall'utente con quelli random
 function confrontaNumeri(numeriRandom, numeriUtente) {
   // creo array numeri indovinati
   const numeriIndovinati = [];
-  //   scorro l'array dei numeri random
+  //   scorro l'array dei numeri UTENTE
   for (let i = 0; i < numeriRandom.length; i++) {
     if (numeriUtente.includes(numeriRandom[i])) {
       numeriIndovinati.push(numeriRandom[i]);
